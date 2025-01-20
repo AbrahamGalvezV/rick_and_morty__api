@@ -1,7 +1,8 @@
 .character-card {
     display: flex;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.505);
     color: #9ee700;
     border-radius: 15px;
     gap: 15px;
