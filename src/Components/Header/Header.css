@@ -23,7 +23,6 @@
     list-style: name;
     position: relative;
     overflow: hidden;
-    height: hidden;
     height: 50px;
     transition: height 0.3s ease;
 }
@@ -58,7 +57,3 @@
     justify-content: flex-start;
 }
 
-/* .navbar__logo {
-    max-width: 150px;
-    heingth:auto;
-} */

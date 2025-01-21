@@ -44,3 +44,20 @@
     color:#9ee700
 }
 
+.loading-message {
+    color: #888;
+    font-style: italic;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+/* .additional-info {
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.427);
+    padding: 10px;
+    border-radius: 5px;
+} */
+
