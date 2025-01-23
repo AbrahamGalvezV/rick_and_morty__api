@@ -55,8 +55,7 @@ export const CharacterCard = ({ character, status }) => {
           {error && <p className="error-message">{error}</p>}
           {characterDetails && (
             <div className="details-content">
-              <p>Origin: {characterDetails.origin?.name || "Unknown"}</p>
-              <p>Location: {characterDetails.location?.name || "Unknown"}</p>
+
               <p>Status: {character.status}</p>
               <p>Species: {character.species}</p>
             </div>

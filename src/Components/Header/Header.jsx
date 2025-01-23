@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 //---------------------------------------------------------------------------
@@ -10,27 +10,40 @@ export const Header = () => {
       <nav className="navbar__top">
         <ul className="navbar__menu">
           <li className="navbar__item">
-            <Link className="navbar__link" href="/">
-              Chapters
-            </Link>
+            <NavLink
+              to="/episodes"
+              className={({ isActive }) => 
+              isActive ? "navbar__link active-link" : "navbar__link"
+              } 
+              >
+              Episodes
+            </NavLink>
           </li>
           <li className="navbar__item">
-            <Link className="navbar__link" href="/">
+            <NavLink 
+              to="/"
+              className={({ isActive }) =>
+              isActive ? "navbar__link active-link" : "navbar__link"
+              }
+              >
               Characters
-            </Link>
+            </NavLink>
           </li>
           <li className="navbar__item">
-            <Link className="navbar__link" href="/">
+            <NavLink 
+              to="/info"
+              className={({ isActive }) =>
+              isActive ? "navbar__link active-link" : "navbar__link" 
+              }
+              >
               Information
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
-      {/* <img
-        src="../../../img/ramLetters.png"
-        alt="Logo"
-        className="navbar_logo"
-      /> */}
+
     </header>
   );
 };
+
+export default Header;

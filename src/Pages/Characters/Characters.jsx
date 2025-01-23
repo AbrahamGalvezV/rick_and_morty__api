@@ -47,7 +47,7 @@ export const Characters = () => {
                     {characters.map((char) => {
                         return (
                             <CharacterCard
-                                key={char.id} // Agrefa `key` único para cada personaje
+                                key={char.id} // Agrega `key` único para cada personaje
                                 character={char} // Pasa el personaje como prop
                             />
                         );

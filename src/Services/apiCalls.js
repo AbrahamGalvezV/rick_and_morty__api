@@ -14,5 +14,17 @@ export const bringAllCharacters = async () => {
 
 export const bringCharactersById = async (id) => {
     const res = await axios.get(`${API_URL}/character/${id}`) // Endpoint
-    return res.data // Devuelve los personajes
+    return res.data // Devuelve los personajes según el id
 }
+
+export const bringEpisodes = async (id) => {
+    const res = await axios.get(`${API_URL}/episode`,) // Endpoint
+    return res.data.results // Devuelve los episodios
+}
+
+export const bringEpisodesById = async (id) => {
+    const res = await axios.get(`${API_URL}/episode/${id}`)// Endpoint
+    return res.data // Devuelve los episodios según el id
+}
+
+// console.log(bringEpisodes(1));
