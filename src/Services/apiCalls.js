@@ -8,7 +8,7 @@ const API_URL = "https://rickandmortyapi.com/api"
 // const API_URL = "Aquí una url para entornos de desarrollo";
 
 export const bringAllCharacters = async () => {
-    const res = await axios.get(`${API_URL}/character`, /*headers*/) // Endpoint
+    const res = await axios.get(`${API_URL}/character`) // Endpoint
     return res.data.results // Devuelve los personajes
 }
 
@@ -17,7 +17,7 @@ export const bringCharactersById = async (id) => {
     return res.data // Devuelve los personajes según el id
 }
 
-export const bringEpisodes = async (id) => {
+export const bringAllEpisodes = async (id) => {
     const res = await axios.get(`${API_URL}/episode`,) // Endpoint
     return res.data.results // Devuelve los episodios
 }
@@ -27,4 +27,4 @@ export const bringEpisodesById = async (id) => {
     return res.data // Devuelve los episodios según el id
 }
 
-// console.log(bringEpisodes(1));
+// console.log(bringAllCharacters());

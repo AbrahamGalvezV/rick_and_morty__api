@@ -1,0 +1,19 @@
+.episode-card {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.505);
+    color: #9ee700;
+    border-radius: 15px;
+    gap: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-wrap: wrap;
+    width: 32%;
+}
+
+.character-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+

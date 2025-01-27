@@ -5,7 +5,7 @@ import "./CharacterCard.css";
 //----------------------------------------------------------------------------------------------
 
 export const CharacterCard = ({ character, status }) => {
-  // Estado para guardar los detalles adicionales del personaje
+  // Estados para guardar los detalles adicionales del personaje
   const [characterDetails, setCharacterDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,17 +22,17 @@ export const CharacterCard = ({ character, status }) => {
       setError("Error al obtener el personaje");
       console.error("Error al obtener el personaje:", err);
     } finally {
-      setLoading(false); // Finañiza el estado de carga
+      setLoading(false); // Finaliza el estado de carga
     }
   };
 
-  // Alternar entre mostrar y ocultar detalles
+  // Altertar entre mostrar y ocultar detalles
   const toggleDetails = async () => {
     if (!showDetails) {
         // Si los detalles no están visibles, obtén los detalles del personaje
-        await fetchCharacterDetails(character.id); // Llamar a la API Para obtener los detalles
+        await fetchCharacterDetails(character.id); // Llamar a la API para obtener los detalles
     }
-      setShowDetails((prevState) => !prevState); // Almacena el esrado de visivilidad 
+      setShowDetails((prevState) => !prevState); // Almacena el estado de visivilidad 
   };
 
   return (

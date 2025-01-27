@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
+import { bringAllEpisodes } from "../../Services/apiCalls";
+import { EpisodeCard } from "../../Components/EpisodeCard/EpisodeCard";
 import "./Episodes.css"
-import { EpisodesCard } from "../../Components/EpisodeCard/EpisodeCard";
 
 //--------------------------------------------------------------------------
 
@@ -16,8 +17,10 @@ export const Episodes = () => {
         const fetchEpisodes = async () => {
             try {
                 setLoading(true); // Activa el estado de carga
-                const data = await bringAllEpisodes(); // LLama a la API para obtener los personajes
-                setCharacters(data); // Almacena los datos que contiene bringAllEpisodes
+                const data = await bringAllEpisodes();             
+                // console.log(data);
+                // LLama a la API para obtener los personajes
+                setEpidodes(data); // Almacena los datos que contiene bringAllEpisodes
             } catch (err) {
                 setError("Error al obtener los datos"); 
             } finally {
@@ -27,11 +30,15 @@ export const Episodes = () => {
         fetchEpisodes(); // Llama a la funcón cuando el componente se monta
     }, []); // Dependencia vacia para que se ejecute solo al montar
 
-
+    // Maneja la animación al cargar el componente
+    useEffect (() => {
+        setAnimate(true); // Activa la clase de animación
+    }, []); // Dependencia vacía para que se ejecute solo al mostrar
 
 
     return (
         <div className={`episodes-desing ${animate ? "animate" : ""}`}>
+
             <h1 className="episodes-design-title">Episodes of Rick And Morty</h1>
             {loading && <p>Carrgando episodios...</p>}
             {error && <p>{error}</p>}
@@ -40,7 +47,7 @@ export const Episodes = () => {
                 <ol>
                     {episodes.map((epis) => {
                         return (
-                            <EpisodesCard 
+                            <EpisodeCard 
                                 key={epis.id}
                                 episode={epis}
                             />
@@ -48,7 +55,6 @@ export const Episodes = () => {
                     })}
                 </ol>
             </div>
-
         </div>
     )
 }
