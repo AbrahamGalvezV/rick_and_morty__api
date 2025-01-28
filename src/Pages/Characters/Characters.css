@@ -9,6 +9,11 @@
     }
 }
 
+.characters-desing.animate {
+    margin-top: 0;
+    opacity: 1;
+} 
+
 .characters-desing {
     background-color: rgba(34, 34, 34, 0.575);
     position: relative;
@@ -18,11 +23,6 @@
     opacity: 0;
     transition: margin-top 1s ease-out, opacity 1s ease-out;
 }
-
-.characters-desing.animate {
-    margin-top: 0;
-    opacity: 1;
-} 
 
 .characters-design-title {
     background-color: rgba(0, 0, 0, 0.505);

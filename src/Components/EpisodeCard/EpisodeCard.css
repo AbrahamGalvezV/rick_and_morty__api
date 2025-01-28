@@ -1,6 +1,5 @@
 .episode-card {
     display: flex;
-    align-items: center;
     padding: 40px;
     background-color: rgba(0, 0, 0, 0.505);
     color: #9ee700;
@@ -9,7 +8,9 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex-wrap: wrap;
-    width: 32%;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .character-card:hover {
@@ -17,3 +18,20 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
+h4 {
+    font-size: 25px;
+}
+
+.toggle-details-button {
+    background-color: #9ee700;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-details-button:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}

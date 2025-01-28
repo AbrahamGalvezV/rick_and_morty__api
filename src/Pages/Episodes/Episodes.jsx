@@ -43,7 +43,7 @@ export const Episodes = () => {
             {loading && <p>Carrgando episodios...</p>}
             {error && <p>{error}</p>}
 
-            <div className="episode-list">
+            <div className="episodes-list">
                 <ol>
                     {episodes.map((epis) => {
                         return (
