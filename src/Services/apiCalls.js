@@ -32,21 +32,16 @@ export const bringEpisodesById = async (id) => {
 //     return res.data.characters 
 // }
 
-export const bringCharactersInEpisodeById = async (charactersUrls) => {
+export const bringCharactersInEpisodeById = async (url) => {
     try {
-        //Promise.all para realizar solicitudes en paralelo para cada URL
-        const characterDetails = await Promise.all(
-            charactersUrls.map(async (url) => {
-                const response = await axios.get(url); // Hacemos la solicitud para cada URL
-                return response.data; // Retornamos los datos del personaje
-            })
-        );
-        return characterDetails; // Retornamos los detalles de todos los personajes
+        const response = await axios.get(url); // Solicitud para una sola URL
+        return response.data; // Retorna los datos del personaje
     } catch (err) {
-        console.error("Error al obtener personajes:", err);
-        throw err; // Relanzamos el error para manejarlo adecuadamente donde sea necesario
+        console.error("Error al obtener personaje:", err);
+        throw err;
     }
 };
+
 
 
 // console.log(bringCharactersInEpisodeById(1));

@@ -1,11 +1,6 @@
 import { useState } from "react";
-import {
-  bringCharactersInEpisodeById,
-  bringEpisodesById,
-} from "../../Services/apiCalls";
+import { bringCharactersInEpisodeById } from "../../Services/apiCalls";
 import "./EpisodeCard.css";
-
-//---------------------------------------------------------------
 
 export const EpisodeCard = ({ episode }) => {
   const [episodeDetails, setEpisodeDetails] = useState([]);
@@ -15,16 +10,21 @@ export const EpisodeCard = ({ episode }) => {
 
   // Función para obtener los personajes de un episodio
   const fetchCharacters = async (characterUrls) => {
+    if (!Array.isArray(characterUrls)) {
+      setError("Error: La lista de personajes no es válida.");
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
 
-      // Traemos los detalles de todos los personajes usando Promise.all
+      // Obtener detalles de todos los personajes
       const characterDetails = await Promise.all(
         characterUrls.map((url) => bringCharactersInEpisodeById(url))
       );
 
-      setEpisodeDetails(characterDetails); // Guardamos los detalles de los personajes
+      setEpisodeDetails(characterDetails);
     } catch (err) {
       setError("Error al obtener los personajes");
       console.error("Error al obtener los personajes:", err);
@@ -36,9 +36,9 @@ export const EpisodeCard = ({ episode }) => {
   // Alternar visibilidad de detalles
   const toggleDetails = async () => {
     if (!showDetails) {
-      await bringCharactersInEpisodeById(episode.characters); // Llamamos a la función para obtener los personajes
+      await fetchCharacters(episode.characters);
     }
-    setShowDetails((prevState) => !prevState); // Cambiamos el estado de visibilidad
+    setShowDetails((prevState) => !prevState);
   };
 
   return (
@@ -56,8 +56,8 @@ export const EpisodeCard = ({ episode }) => {
             <p className="error">{error}</p>
           ) : (
             <ul>
-              {episodeDetails.map((character, index) => (
-                <li key={index}>{character.name}</li>
+              {episodeDetails.map((character) => (
+                <li key={character.id}>{character.name}</li>
               ))}
             </ul>
           )}

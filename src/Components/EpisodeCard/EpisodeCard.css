@@ -16,6 +16,7 @@
 .character-card:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    
 }
 
 h4 {
@@ -23,7 +24,7 @@ h4 {
 }
 
 .toggle-details-button {
-    background-color: #9ee700;
+    background-color: #9ee700ca;
     color: black;
     border: none;
     padding: 0.5rem 1rem;
@@ -34,4 +35,15 @@ h4 {
 
 .toggle-details-button:hover {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background-color: #9ee700;
+
+}
+
+.episode-details {
+    margin: 45px auto;
+    background-color: rgba(0, 0, 0, 0.217);
+    width: 350px;
+    padding: 10px 20px;
+    height: 100px;
+    overflow-y: scroll;
 }
