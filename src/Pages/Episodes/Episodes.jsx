@@ -4,7 +4,7 @@ import { EpisodeCard } from "../../Components/EpisodeCard/EpisodeCard";
 import "./Episodes.css";
 
 export const Episodes = () => {
-    const [episodes, setEpisodes] = useState([]); // Corregido: No usar `setEpidodes`
+    const [episodes, setEpisodes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [animate, setAnimate] = useState(false);

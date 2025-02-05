@@ -31,12 +31,12 @@ export const Header = () => {
           </li>
           <li className="navbar__item">
             <NavLink 
-              to="/info"
+              to="/locations"
               className={({ isActive }) =>
               isActive ? "navbar__link active-link" : "navbar__link" 
               }
               >
-              Information
+              Locations
             </NavLink>
           </li>
         </ul>

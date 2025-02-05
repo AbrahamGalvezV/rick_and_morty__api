@@ -2,6 +2,8 @@ import { useState } from "react";
 import { bringCharactersInEpisodeById } from "../../Services/apiCalls";
 import "./EpisodeCard.css";
 
+//---------------------------------------------------------------------
+
 export const EpisodeCard = ({ episode }) => {
   const [episodeDetails, setEpisodeDetails] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -57,7 +59,9 @@ export const EpisodeCard = ({ episode }) => {
           ) : (
             <ul>
               {episodeDetails.map((character) => (
-                <li key={character.id}>{character.name}</li>
+                <li key={character.id}>
+                  {character.name}
+                </li>
               ))}
             </ul>
           )}

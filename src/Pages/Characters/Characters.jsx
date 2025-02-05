@@ -7,10 +7,10 @@ import "./Characters.css"
 
 export const Characters = () => {
 
-    const [characters, setCharacters] = useState([]); // Estado para almacenar los personajes
+    const [characters, setCharacters] = useState([]); // Estado para almacenar un array con los personajes traidos de la API
     const [loading, setLoading] = useState(true); // Estado de carga inicializado cono true
     const [error, setError] = useState(null); // Estado del error inicializado como null
-    const [animate, setAnimate] = useState(false); // Estado para manejar la animacuón
+    const [animate, setAnimate] = useState(false); // Estado para manejar la animación
     
     useEffect(() => {
         // Hook para obtener personajes al cargar el componente
@@ -18,7 +18,7 @@ export const Characters = () => {
             try {
                 setLoading(true); // Activa el estado de carga
                 const data = await bringAllCharacters(); // Llama a la API para obtener los personajes
-                setCharacters(data); // Almacena los dos data que contiene bringAllCharacters()
+                setCharacters(data); // Almacena data que contiene bringAllCharacters()
             } catch (err) {
                 setError("Error al obtener los datos"); // Establece el mensaje de error en caso de fallo
             } finally {
@@ -30,7 +30,7 @@ export const Characters = () => {
     
     // useEffect Para manejar la animacion al cargar el componente 
     useEffect(() => {
-        setAnimate(true); // Activa la clase de animación
+        setAnimate(true); // Acciona la aninación al cargar la página
     }, []); // Dependencia vacía para que se ejecute solo al montar
 
     return (
