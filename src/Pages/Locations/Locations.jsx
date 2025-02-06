@@ -6,24 +6,26 @@ import "./Locations.css";
 //-------------------------------------------------------------------------
 
 export const Locations = () => {
-  const [locations, setLocations] = useState([]); // Otorga el contenido de al estado setLocations
+  const [locations, setLocations] = useState([]); // Estado vacío que contendrá un array con las localizaciones
   const [loading, setLoading] = useState(true); // Estado de carga iniciado con true
   const [error, setError] = useState(null); // Estado de error iniciado con null
-  const [animate, setAnimate] = useState(false);// Estado de la animación iniciado con false
+  const [animate, setAnimate] = useState(false); // Estado de la animación iniciado con false
 
-  useEffect(() => {  // Ejecuta una función cuando el componente esta montado
-    const fetchLocations = async () => { // Función asíncrona que obtiene las localizaciones de la API
+  useEffect(() => {
+    // Ejecuta una función cuando el componente está montado
+    const fetchLocations = async () => {
+      // Función asíncrona que obtiene las localizaciones de la API
       try {
-        setLoading(true); // Cambiamos el estado de setLoading a true
-        const data = await bringAllLocations(); // Otorgamos los datos de la API a data 
+        setLoading(true); // Activa el estado de carga
+        const data = await bringAllLocations(); // Otorgamos los datos de la API a data
         setLocations(data); //todo Otorgamos el contenido de data al estado setLocatuons
-      } catch (err) { 
-        setError("Error al obtener las localizaciones"); // Si ocurre un error, se guarda el mensaje en el estado 'error'
+      } catch (err) {
+        setError("Error al obtener las localizaciones"); // Si ocurre un error, se guarda el mensaje en el estado 'setError'
       } finally {
-        setLoading(false); // Desactiva el estado de carga 
+        setLoading(false); // Desactiva el estado de carga
       }
     };
-    fetchLocations(); // Se llama a la función para ejecutarla inmediatamente cuando el componente se monte
+    fetchLocations(); // Llama a la función para ejecutarla inmediatamente cuando el componente se monta
   }, []); // La dependencia vacía para que useEffect se ejecute solo una vez
 
   // Activa la animación cuando el componente se monta
@@ -33,7 +35,7 @@ export const Locations = () => {
 
   return (
     // Clase dinamica, si setAnimate es true, se añade la clase animate con unos estilos diferentes
-    <div className={`locations-design ${animate ? "animate" : ""}`}> 
+    <div className={`locations-design ${animate ? "animate" : ""}`}>
       <h1 className="locations-design-title">Locations from Rick And Morty</h1>
       {/* Si setLoading es true, se muestra el mensaje */}
       {loading && <p>Cargando locations...</p>}
@@ -41,11 +43,15 @@ export const Locations = () => {
       {error && <p>{error}</p>}
       <div className="locations-list">
         <ol>
-            {/* Mapea el array 'locations' y genera 'locationCard' por cada localización */}
-          {locations.map((locat) => (
-            // Cada 'LoactionCard' recibe un objeto 'location' y usa 'id' como llave única
-            <LocationCard key={locat.id} location={locat}/>
-          ))}
+          {/* Mapea el array 'locations' y genera 'locationCard' por cada localización */}
+          {locations.map((locat) => {
+            return (
+              <LocationCard // Cada 'LoactionCard' recibe un objeto 'location' y usa 'id' como llave única
+                key={locat.id} 
+                location={locat}
+              />
+            );
+          })}
         </ol>
       </div>
     </div>

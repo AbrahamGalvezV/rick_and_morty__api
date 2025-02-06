@@ -1,11 +1,10 @@
-import { bringCharactersById } from "../../Services/apiCalls";
+import { bringCharacterById } from "../../Services/apiCalls";
 import { useState } from "react";
 import "./CharacterCard.css";
 
 //----------------------------------------------------------------------------------------------
 
 export const CharacterCard = ({ character, status }) => {
-  // Estados para guardar los detalles adicionales del personaje
   const [characterDetails, setCharacterDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,8 +15,10 @@ export const CharacterCard = ({ character, status }) => {
     try {
       setLoading(true);
       setError(null); // Reincia el error antes de intentar una nueva solicitud
-      const details = await bringCharactersById(id); // Llamada a la API
+
+      const details = await bringCharacterById(id); // Llamada a la API
       setCharacterDetails(details); // Actualiza el estado con los detalles obtenidos
+
     } catch (error) {
       setError("Error al obtener el personaje");
       console.error("Error al obtener el personaje:", err);
@@ -26,10 +27,10 @@ export const CharacterCard = ({ character, status }) => {
     }
   };
 
-  // Altertar entre mostrar y ocultar detalles
+  // Cambia el estado de setShowDetails para mostrar u ocultar detalles
   const toggleDetails = async () => {
     if (!showDetails) {
-        // Si los detalles no están visibles, obtén los detalles del personaje
+        // Si los detalles están visibles, obtén los detalles del personaje
         await fetchCharacterDetails(character.id); // Llamar a la API para obtener los detalles
     }
       setShowDetails((prevState) => !prevState); // Almacena el estado de visivilidad 

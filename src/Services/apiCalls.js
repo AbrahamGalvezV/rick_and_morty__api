@@ -12,7 +12,7 @@ export const bringAllCharacters = async () => {
     return res.data.results // Devuelve los personajes
 }
 
-export const bringCharactersById = async (id) => {
+export const bringCharacterById = async (id) => {
     const res = await axios.get(`${API_URL}/character/${id}`) // Endpoint bringCharactersById
     return res.data // Devuelve los personajes según el id
 }
@@ -38,20 +38,31 @@ export const bringCharactersInEpisodeById = async (url) => {
 };
 
 export const bringAllLocations = async (id) => {
-    const res = await axios.get(`${API_URL}/location`)
-    return res.data.results
+    const results = await axios.get(`${API_URL}/location`)
+    return results.data.results
 }
 
 export const bringCharactersInLocationById = async (id) => {
     try {
+        // Primero obtenemos la información de la ubicación
         const response = await axios.get(`${API_URL}/location/${id}`);
-        return response.data;
+        const locationData = response.data;
+
+        // Extraemos las URLs de los personajes desde `residents`
+        const characterUrls = locationData.residents;
+
+        // Hacemos las llamadas a la API para obtener la info de cada personaje
+        const characters = await Promise.all(
+            characterUrls.map(async (url) => {
+                const characterRes = await axios.get(url);
+                return characterRes.data;
+            })
+        );
+
+        return characters; // Retornamos solo los personajes, no toda la localización
     } catch (err) {
-        console.error("Error al obtener los personajes", err);
+        console.error("Error al obtener los personajes:", err);
         throw err;
     }
 };
-
-
-// console.log(bringAllLocations(1));
 

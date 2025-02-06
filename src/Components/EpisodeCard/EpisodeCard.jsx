@@ -12,16 +12,11 @@ export const EpisodeCard = ({ episode }) => {
 
   // Función para obtener los personajes de un episodio
   const fetchCharacters = async (characterUrls) => {
-    if (!Array.isArray(characterUrls)) {
-      setError("Error: La lista de personajes no es válida.");
-      return;
-    }
-
     try {
       setLoading(true);
       setError(null);
 
-      // Obtener detalles de todos los personajes
+      // Obtener detalles de todos los personajes en el episodio
       const characterDetails = await Promise.all(
         characterUrls.map((url) => bringCharactersInEpisodeById(url))
       );
@@ -51,7 +46,7 @@ export const EpisodeCard = ({ episode }) => {
       </button>
       {showDetails && (
         <div className="episode-details">
-          <h4>Personajes en el capítulo</h4>
+          <h4>Personajes en capítulo: {episode.name}</h4>
           {loading ? (
             <p>Cargando personajes...</p>
           ) : error ? (
