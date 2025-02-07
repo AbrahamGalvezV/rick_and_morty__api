@@ -18,10 +18,6 @@
     box-shadow: 0 6px 10px #9ee7006f;
 }
 
-h4 {
-    font-size: 25px;
-}
-
 .toggle-details-button {
     background-color: #9ee700ca;
     color: black;
@@ -53,16 +49,7 @@ h4 {
     gap: 50px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     justify-content: space-between;
-}
-
-h5 {
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
 }
 
 .location-character-img {
@@ -76,9 +63,21 @@ h5 {
     transform: scale(1.05);
 }
 
+h4 {
+    font-size: 25px;
+}
+
+h5 {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .location-character h5 {
     font-size: 18px;
-    margin-top: 10ox;
+    margin-top: 10px;
 }
 
 .location-details::-webkit-scrollbar {

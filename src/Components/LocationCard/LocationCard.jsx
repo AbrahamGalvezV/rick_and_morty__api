@@ -28,7 +28,6 @@ export const LocationCard = ({ location }) => {
     }
   };
   
-
   // Cambia el estado de setShowDetails para mostrar u ocultar detalles
   const toggleDetails = async () => {
     if (!showDetails) {

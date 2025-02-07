@@ -27,15 +27,29 @@ export const bringEpisodesById = async (id) => {
     return res.data // Devuelve los episodios según el id
 }
 
-export const bringCharactersInEpisodeById = async (url) => {
+export const bringCharactersInEpisodeById = async (id) => {
     try {
-        const response = await axios.get(url); // Solicitud para una sola URL
-        return response.data; // Retorna los datos del personaje
+        // Obtenemos la información del episodio
+        const response = await axios.get(`${API_URL}/episode/${id}`);
+        const episodeData = response.data;
+
+        // Extraemos las URLS de los personajes desde
+        const characterUrls = episodeData.characters;
+
+        // Llamada a la API para obtener la información de cada personaje
+        const characters = await Promise.all(
+            characterUrls.map(async (url) => {
+                const characterRes = await axios.get(url);
+                return characterRes.data;
+            })
+        );
+        return characters; // Retornamos los personajes
     } catch (err) {
         console.error("Error al obtener personaje:", err);
         throw err;
     }
 };
+
 
 export const bringAllLocations = async (id) => {
     const results = await axios.get(`${API_URL}/location`)
@@ -44,14 +58,14 @@ export const bringAllLocations = async (id) => {
 
 export const bringCharactersInLocationById = async (id) => {
     try {
-        // Primero obtenemos la información de la ubicación
+        // Obtenemos la información de la ubicación
         const response = await axios.get(`${API_URL}/location/${id}`);
         const locationData = response.data;
 
-        // Extraemos las URLs de los personajes desde `residents`
+        // Extracción de las URLs de los personajes desde `residents`
         const characterUrls = locationData.residents;
 
-        // Hacemos las llamadas a la API para obtener la info de cada personaje
+        // Llamamos a la API para obtener la info de cada personaje
         const characters = await Promise.all(
             characterUrls.map(async (url) => {
                 const characterRes = await axios.get(url);

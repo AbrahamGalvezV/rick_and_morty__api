@@ -13,8 +13,8 @@
 }
 
 .character-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+    box-shadow: 0 6px 10px #9ee7006f;
 }
 
 .character-image {
@@ -53,11 +53,4 @@
     color: red;
     font-weight: bold;
 }
-
-/* .additional-info {
-    margin-top: 10px;
-    background-color: rgba(0, 0, 0, 0.427);
-    padding: 10px;
-    border-radius: 5px;
-} */
 

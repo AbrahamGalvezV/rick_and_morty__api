@@ -11,29 +11,27 @@ export const EpisodeCard = ({ episode }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   // Función para obtener los personajes de un episodio
-  const fetchCharacters = async (characterUrls) => {
+  const fetchCharacters = async (id) => {
     try {
       setLoading(true);
       setError(null);
 
       // Obtener detalles de todos los personajes en el episodio
-      const characterDetails = await Promise.all(
-        characterUrls.map((url) => bringCharactersInEpisodeById(url))
-      );
+      const characterDetails = await bringCharactersInEpisodeById(id); // Llamamos a la API por la id del personaje        
+      setEpisodeDetails(characterDetails); // Actualizamos el estado con los detalles obtenidos
 
-      setEpisodeDetails(characterDetails);
-    } catch (err) {
+    } catch (error) {
       setError("Error al obtener los personajes");
       console.error("Error al obtener los personajes:", err);
     } finally {
-      setLoading(false);
+      setLoading(false); // Finaliza el estado de carga
     }
   };
 
-  // Alternar visibilidad de detalles
+  // Cambia el estado de setShowDetails para mostrar u ocultar los detalles
   const toggleDetails = async () => {
     if (!showDetails) {
-      await fetchCharacters(episode.characters);
+      await fetchCharacters(episode.id);
     }
     setShowDetails((prevState) => !prevState);
   };
@@ -52,10 +50,13 @@ export const EpisodeCard = ({ episode }) => {
           ) : error ? (
             <p className="error">{error}</p>
           ) : (
-            <ul>
+            <ul className="episode-characters-list">
               {episodeDetails.map((character) => (
                 <li key={character.id}>
-                  {character.name}
+                  <img className="episode-characters-img"
+                  src={character.image}
+                  alt={character.name} />
+                  <h5>{character.name}</h5>
                 </li>
               ))}
             </ul>
