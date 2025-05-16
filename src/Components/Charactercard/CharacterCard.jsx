@@ -19,7 +19,7 @@ export const CharacterCard = ({ character, status }) => {
       const details = await bringCharacterById(id); // Llamada a la API
       setCharacterDetails(details); // Actualiza el estado con los detalles obtenidos
 
-    } catch (error) {
+    } catch (err) {
       setError("Error al obtener el personaje");
       console.error("Error al obtener el personaje:", err);
     } finally {
@@ -35,6 +35,7 @@ export const CharacterCard = ({ character, status }) => {
     }
       setShowDetails((prevState) => !prevState); // Almacena el estado de visivilidad 
   };
+  
 
   return (
     <div className="character-card" onClick={toggleDetails}>

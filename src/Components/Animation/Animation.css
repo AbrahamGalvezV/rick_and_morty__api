@@ -1,0 +1,14 @@
+.characters-desing.animate {
+    margin-top: 0;
+    opacity: 1;
+} 
+
+.characters-desing {
+    background-color: rgba(34, 34, 34, 0.575);
+    position: relative;
+    z-index: 1; 
+    margin-top: 100vh; 
+    padding: 1rem;
+    opacity: 0;
+    transition: margin-top 1s ease-out, opacity 1s ease-out;
+}

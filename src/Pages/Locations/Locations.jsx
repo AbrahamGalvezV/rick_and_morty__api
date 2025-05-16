@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { bringAllLocations } from "../../Services/apiCalls";
 import { LocationCard } from "../../Components/LocationCard/LocationCard";
+import { Animation } from "../../Components/Animation/Animation";
 import "./Locations.css";
 
 //-------------------------------------------------------------------------
@@ -9,7 +10,6 @@ export const Locations = () => {
   const [locations, setLocations] = useState([]); // Estado vacío que contendrá un array con las localizaciones
   const [loading, setLoading] = useState(true); // Estado de carga iniciado con true
   const [error, setError] = useState(null); // Estado de error iniciado con null
-  const [animate, setAnimate] = useState(false); // Estado de la animación iniciado con false
 
   useEffect(() => {
     // Ejecuta una función cuando el componente está montado
@@ -28,14 +28,9 @@ export const Locations = () => {
     fetchLocations(); // Llama a la función para ejecutarla inmediatamente cuando el componente se monta
   }, []); // La dependencia vacía para que useEffect se ejecute solo una vez
 
-  // Activa la animación cuando el componente se monta
-  useEffect(() => {
-    setAnimate(true);
-  }, []); // Dependecia vacía para que ejecutar el efecto solo al montar el componente
-
   return (
     // Clase dinamica, si setAnimate es true, se añade la clase animate con unos estilos diferentes
-    <div className={`locations-design ${animate ? "animate" : ""}`}>
+    <Animation>
       <h1 className="locations-design-title">Locations from Rick And Morty</h1>
       {/* Si setLoading es true, se muestra el mensaje */}
       {loading && <p>Cargando locations...</p>}
@@ -54,6 +49,6 @@ export const Locations = () => {
           })}
         </ol>
       </div>
-    </div>
+    </Animation>
   );
 };
